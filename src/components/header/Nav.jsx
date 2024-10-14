@@ -1,9 +1,9 @@
-import Logo from '../images/Logo.svg';
-function Nav() {
+import './Nav.css';
+
+const Nav = () => {
   return (
-    <nav>
-      <img src={Logo} alt="Little Lemon"/>
-      <ul>
+    <nav className="nav-wrapper">
+      <ul className="nav-items">
         <li><a href="/home">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/menu">Menu</a></li>
