@@ -35,7 +35,7 @@ const Highlights = () => {
   ];
 
   return (
-    <div className="highlights-container">
+    <div id="highlights" className="highlights-container">
       <div className="highlights-wrapper">
         <div className="highlights-top">
           <h3 className="highlights-top-title">This week specials!</h3>

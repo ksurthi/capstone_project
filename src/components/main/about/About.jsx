@@ -3,7 +3,7 @@ import Image1 from '../../../images/Mario and Adrian A.jpg';
 import Image2 from '../../../images/Mario and Adrian b.jpg';
 const About = () => {
   return (
-    <div className="about">
+  <div id="about" className="about">
     <div className="about-container">
       <div className="about-left">
         <h2>Little Lemon</h2>

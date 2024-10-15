@@ -1,0 +1,143 @@
+.reservation {
+  width: 100%;
+}
+
+.reservation-container {
+  background-color: var(--primary-green);
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.reservation-left {
+  padding: 60px 0;
+  margin-left: 60px;
+}
+
+.reservation-left h1 {
+  color: var(--primary-yellow);
+}
+
+.reservation-left p {
+  margin: 20px 0;
+}
+
+.reservation-image {
+  width: 650px;
+  height: 450px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  top: 32px;
+  right: 32px;
+}
+
+.reservation-image img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.reservation-form {
+  width: 40%;
+  height: auto;
+  background-color: #fff;
+  color: var(--hg-black);
+  border-radius: 10px;
+  padding: 30px 40px 50px;
+  text-align: left;
+  margin: 64px auto;
+}
+
+.reservation-form p {
+  font-size: smaller;
+  margin-bottom: 30px;
+}
+
+.reservation-form-wrapper fieldset {
+  border: none;
+}
+
+.reservation-form-wrapper .field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.reservation-form-wrapper .field label {
+  font-size: smaller;
+  margin: 0 0 5px 0px;
+  font-weight: medium;
+}
+
+.reservation-form-wrapper input {
+  padding: 10px;
+  border: 1px solid var(--hg-cream);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.reservation-form-wrapper .guestsdate {
+  display: grid;
+  grid-template-columns: 68% 28%;
+  gap: 4%;
+}
+
+.reservation-form-wrapper .occasion {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation-form-wrapper .options {
+  padding-right: 10px;
+  border: 1px solid var(--hg-cream);
+  border-radius: 5px;
+}
+
+.reservation-form-wrapper select {
+  padding: 10px;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+
+.error-message {
+  font-size: 15px;
+  color: red;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .reservation-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reservation-left {
+    padding: 16px 0;
+    margin-left: 24px;
+  }
+
+  .reservation-image {
+    top: 16px;
+    width: 350px;
+    height: 225px;
+    overflow: visible;
+    padding-left: 16px;
+    margin: auto;
+  }
+
+  .reservation-form {
+    margin: auto;
+    width: 75%;
+  }
+
+  .guestsdate {
+    display: flex;
+    flex-direction: column;
+  }
+}
