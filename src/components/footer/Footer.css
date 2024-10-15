@@ -22,8 +22,9 @@
 
 .footer-container li, .footer-container li a {
   color: #fff;
-  font-size: small;
-  font-weight:lighter
+  font-size: medium;
+  font-weight:lighter;
+  padding: 4px 0px;
 }
 
 .copyright {
@@ -42,7 +43,7 @@
 
   .opening-times,
   .contact,
-  .locations {
+  .footerSocials {
     display: flex;
     flex-direction: column;
     align-items: center;

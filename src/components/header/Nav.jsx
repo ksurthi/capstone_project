@@ -20,7 +20,7 @@ const Nav = () => {
         <li onClick={() => setTimeout(scrollToSection, 100, 'highlights')}><NavLink to="/">Menu</NavLink></li>
         <li><NavLink to="/reservation">Reservations</NavLink></li>
         <li><NavLink to="/">Order Online</NavLink></li>
-        <li><a href="/">Login</a></li>
+        <li><NavLink to="/">Login</NavLink></li>
       </ul>
     </nav>
   );
