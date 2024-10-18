@@ -3,6 +3,19 @@ import "./Reservation.css";
 import restuarantImage from '../../images/restaurant.jpg';
 
 const Reservation = () => {
+  const initialAvailableTimes = [
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00"
+  ];
+
+  const submitForm = (values) => {
+    console.log(values);
+  }
+
   return (
       <div className="reservation">
         <div className="reservation-container">
@@ -23,7 +36,7 @@ const Reservation = () => {
             Please fill in and submit form to book your reservation at Little
             Lemon.
           </p>
-          <ReservationForm />
+          <ReservationForm availableTimes={initialAvailableTimes} submitForm={submitForm}/>
         </div>
       </div>
   );

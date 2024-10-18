@@ -1,28 +1,37 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
-const ReservationForm = () => {
-
+const ReservationForm = (props) => {
+  const { availableTimes, submitForm } = props;
+  const initialValues = {
+    name: '',
+    email :'',
+    cellPhone: '',
+    occasion: '',
+    guests: '',
+    date: '',
+    time: '' 
+  };
+  const [state, setState] = useState(
+    initialValues
+  );
   const formik = useFormik({
-    initialValues: {
-      name: '',
-      email :'',
-      cellPhone: '',
-      occasion: '',
-      guests: '',
-      date: ''
-    },
+    initialValues: state,
     onSubmit: (values, { setSubmitting }) => {
-      //submit("", values);
-      setSubmitting(false);
+      setTimeout(() => {
+        setState(values);
+        submitForm(values);
+        setSubmitting(false);
+      }, 400);
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Full name is required!'),
       email: Yup.string().email('Email is not valid').required('Email is required!'),
       cellPhone: Yup.string().required("Telephone is required!"),
       guests: Yup.number().min(1, "There must be at least 1 guest!").required("Please specify number of guests per table!"),
-      date: Yup.string().required("Please select date and time!")
+      date: Yup.string().required("Please select date!"),
+      time: Yup.string().required("Please select time!")
     }),
   });
 
@@ -30,7 +39,7 @@ const ReservationForm = () => {
     <form className="reservation-form-wrapper" onSubmit={formik.handleSubmit}>
       <fieldset>
         <div className="field">
-          <label htmlFor="name">Full Name*</label>
+          <label htmlFor="name" aria-label="name">Full Name*</label>
           <input
             type="text"
             placeholder="John Doe"
@@ -42,7 +51,7 @@ const ReservationForm = () => {
         </div>
 
         <div className="field">
-          <label htmlFor="email">Email*</label>
+          <label htmlFor="email" aria-label="email">Email*</label>
           <input
             type="text"
             placeholder="jonhdoe@email.com"
@@ -54,7 +63,7 @@ const ReservationForm = () => {
         </div>
 
         <div className="field">
-          <label htmlFor="cellPhone">Cell Phone*</label>
+          <label htmlFor="cellPhone" aria-label="cellPhone">Cell Phone*</label>
           <input
             type="tel"
             placeholder="123 123 1234"
@@ -66,7 +75,7 @@ const ReservationForm = () => {
         </div>
 
         <div className="field occasion">
-          <label htmlFor="occasion">Occasion (optional)</label>
+          <label htmlFor="occasion" aria-label="occasion">Occasion (optional)</label>
           <div className="options">
             <select name="occasion" value={formik.values.occasion} onChange={formik.handleChange}>
               <option value="select">Select Occasion</option>
@@ -77,7 +86,7 @@ const ReservationForm = () => {
         </div>
 
         <div className="field guest">
-          <label htmlFor="guests">Guests</label>
+          <label htmlFor="guests" aria-label="guests">Guests</label>
           <input
             type="number"
             placeholder="2"
@@ -91,9 +100,24 @@ const ReservationForm = () => {
         </div>
 
         <div className="field">
-          <label htmlFor="date">Date & Time</label>
-          <input type="datetime-local" name="date" value={formik.values.date} onChange={formik.handleChange}/>
+          <label htmlFor="date" aria-label="date">Date</label>
+          <input type="date" name="date" value={formik.values.date} onChange={formik.handleChange}/>
           <span className="error-message">{formik.touched.date && formik.errors.date}</span>
+        </div>
+
+        <div className="field">
+          <label htmlFor="time" aria-label="time">Time</label>
+          <div className="options">
+            <select name="time" value={formik.values.time} onChange={formik.handleChange}>
+              <option value="select">Select Time</option>
+              {
+                availableTimes.map((time) => {
+                    return _renderOption(time)
+                })
+              }
+            </select>
+          </div>
+          <span className="error-message">{formik.touched.time && formik.errors.time}</span>
         </div>
         <button className="btn" type="submit">
           Reserve
@@ -101,6 +125,9 @@ const ReservationForm = () => {
       </fieldset>
     </form>
   );
+}
+function _renderOption(time) {
+  return (<option value={time} key={time}>{time}</option>);
 }
 
 export default ReservationForm;
