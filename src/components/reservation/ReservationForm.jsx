@@ -1,27 +1,15 @@
-import React, {useState} from "react";
+import React  from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
 const ReservationForm = (props) => {
-  const { availableTimes, submitForm } = props;
-  const initialValues = {
-    name: '',
-    email :'',
-    cellPhone: '',
-    occasion: '',
-    guests: '',
-    date: '',
-    time: '' 
-  };
-  const [state, setState] = useState(
-    initialValues
-  );
+  const { formValues, availableTimes, updateTimes, reserve } = props;
+
   const formik = useFormik({
-    initialValues: state,
+    initialValues: formValues,
     onSubmit: (values, { setSubmitting }) => {
       setTimeout(() => {
-        setState(values);
-        submitForm(values);
+        reserve(values);
         setSubmitting(false);
       }, 400);
     },
@@ -45,6 +33,7 @@ const ReservationForm = (props) => {
             placeholder="John Doe"
             name="name"
             value={formik.values.name}
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           <span className="error-message">{formik.touched.name && formik.errors.name}</span>
@@ -57,6 +46,7 @@ const ReservationForm = (props) => {
             placeholder="jonhdoe@email.com"
             name="email"
             value={formik.values.email}
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           <span className="error-message">{formik.touched.email && formik.errors.email}</span>
@@ -69,6 +59,7 @@ const ReservationForm = (props) => {
             placeholder="123 123 1234"
             name="cellPhone"
             value={formik.values.cellPhone}
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           <span className="error-message">{formik.touched.cellPhone && formik.errors.cellPhone}</span>
@@ -77,7 +68,7 @@ const ReservationForm = (props) => {
         <div className="field occasion">
           <label htmlFor="occasion" aria-label="occasion">Occasion (optional)</label>
           <div className="options">
-            <select name="occasion" value={formik.values.occasion} onChange={formik.handleChange}>
+            <select name="occasion" value={formik.values.occasion} onChange={formik.handleChange} onBlur={formik.handleBlur}>
               <option value="select">Select Occasion</option>
               <option value="birthday">Birthday</option>
               <option value="anniversary">Anniversary</option>
@@ -94,6 +85,7 @@ const ReservationForm = (props) => {
             max={30}
             name="guests"
             value={formik.values.guests}
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           <span className="error-message">{formik.touched.guests && formik.errors.guests}</span>
@@ -101,14 +93,14 @@ const ReservationForm = (props) => {
 
         <div className="field">
           <label htmlFor="date" aria-label="date">Date</label>
-          <input type="date" name="date" value={formik.values.date} onChange={formik.handleChange}/>
+          <input type="date" name="date" value={formik.values.date} onChange={e => { formik.handleChange(e); updateTimes(e.currentTarget.value); }} onBlur={formik.handleBlur}/>
           <span className="error-message">{formik.touched.date && formik.errors.date}</span>
         </div>
 
         <div className="field">
           <label htmlFor="time" aria-label="time">Time</label>
           <div className="options">
-            <select name="time" value={formik.values.time} onChange={formik.handleChange}>
+            <select name="time" value={formik.values.time} onChange={formik.handleChange} onBlur={formik.handleBlur}>
               <option value="select">Select Time</option>
               {
                 availableTimes.map((time) => {
