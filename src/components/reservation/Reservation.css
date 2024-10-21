@@ -111,6 +111,27 @@
   margin-top: 5px;
 }
 
+.reserve {
+  padding: 24px;
+  font-size: smaller;
+}
+
+.reserve .details {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 20px 0px;
+}
+
+.reserve .details ul:first-child {
+  color: var(--primary-green);
+  padding-right: 20px;
+}
+
+.reserve .details ul:nth-child(2) {
+  color: var(--hg-black);
+}
+
 @media screen and (max-width: 700px) {
   .reservation-container {
     display: flex;
